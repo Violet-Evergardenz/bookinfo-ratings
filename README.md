@@ -18,3 +18,9 @@ docker run -d --name ratings -p 8080:8080 --link mongodb:mongodb \
 ```
 
 * Test with path `/ratings/1` and `/health`
+
+```bash
+# kubectl apply -f k8s/
+kubectl apply -f k8s/
+
+```
