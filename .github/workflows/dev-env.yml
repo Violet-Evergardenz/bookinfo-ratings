@@ -41,3 +41,15 @@ jobs:
           namespace: student130-bookinfo-dev
           chart: k8s/helm
           value-files: k8s/helm-values/values-bookinfo-dev-ratings.yaml
+          values: |
+            {
+              "extraEnv": {
+                "COMMIT_SHA": "${{ github.sha }}"
+              }
+            }
+  acceptance-test:
+    needs: deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout web  health status
+        run: curl http://bookinfo.dev.opsta.net/student48/ratings/health | grep "Ratings is working"
